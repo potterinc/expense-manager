@@ -1,0 +1,11 @@
+<h4>{{appName}}</h4>
+
+<h2>Event Binding</h2>
+<button (click)="showData($event)">Click here</button>
+
+<!-- <button on-click="showData()" >Click here</button> -->
+
+<br>
+
+<input type="text" [(ngModel)] = "userName" />
+<h4>Hello, {{userName}} it's two-way Binding here..</h4>

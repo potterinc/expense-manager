@@ -2,45 +2,35 @@
     <div class="row">
         <div>
             <h4>Add Expenses</h4>
-        <form class="form">
-            <div class="form-group">
-                <label for="expenditure" class="label">Expenditure</label>
-                <input 
-                    type="text" 
-                    class="form-control"
-                    FormControlName="expenditure"
-                    name="expenditure">
-            </div>
+            <form class="form" [formGroup]="addExpenses" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="expenditure" class="label">Expenditure</label>
+                    <input 
+                        type="text" class="form-control" 
+                        formControlName="expenditure" 
+                        id="expenditure">
+                    <small 
+                        class="alert alert-info" 
+                        *ngIf="addExpenses.value.expenditure.valid && addExpenses.value.expenditure.touched">
+                        This field is required
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="amount" class="label">Amount</label>
+                    <input type="number" class="form-control" formControlName="amount" id="amount">
+                </div>
 
-            <div class="form-group">
-                <label for="amount" class="label">Amount</label>
+                <div class="form-group">
+                    <label for="date" class="label">Date</label>
+                    <input type="datetime-local" class="form-control" formControlName="date" id="date">
+                </div>
                 <input 
-                    type="number" 
-                    class="form-control"
-                    FormControlName="amount"
-                    name="amount">
-            </div>
-
-            <div class="form-group">
-                <label for="date" class="label">Date</label>
-                <input 
-                    type="datetime-local" 
-                    class="form-control"
-                    FormControlName="date"
-                    name="date">
-            </div>
-
-            <div class="form-group">
-                <label for="expenditure" class="label">Expenditure</label>
-                <input 
-                    type="text" 
-                    class="form-control"
-                    FormControlName="expenditure"
-                    name="expenditure">
-            </div>
-            <input type="submit" class="btn btn-primary form-control" value="Add Expenses">
-        </form>
+                    type="submit" 
+                    class="btn btn-primary form-control"
+                    [disabled]="!addExpenses.valid"
+                    value="Add Expenses"/>
+            </form>
         </div>
-        
+
     </div>
 </div>

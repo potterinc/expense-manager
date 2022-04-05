@@ -5,9 +5,9 @@ require_once('Notification.php');
 
 $postdata = file_get_contents('php://input');
 
-if (isset($_REQUEST['expenditure']) && isset($_REQUEST['date'])) {
+if (isset($postdata) && !empty($postdata)) {
     $notify = new Notification();
-    $request(json_decode($postdata));
+    $request = (json_decode($postdata));
 
         
     $exp = mysqli_real_escape_string($conn, $exp = trim($request->expenditure));
@@ -25,7 +25,7 @@ if (isset($_REQUEST['expenditure']) && isset($_REQUEST['date'])) {
         '$amount'
     )";
 
-    if ($conn->query($exp_query)) {
+    if ($conn->query($exp_query) == TRUE) {
         $notify->success = 'Record Added';
         return json_encode($notify);
     }
